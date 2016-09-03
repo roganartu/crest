@@ -1,6 +1,7 @@
 package crest
 
 import (
+	"fmt"
 	"math/big"
 	"time"
 )
@@ -26,7 +27,7 @@ func (ct *CustomTime) UnmarshalJSON(b []byte) (err error) {
 }
 
 func (ct *CustomTime) MarshalJSON() ([]byte, error) {
-	return []byte(ct.Time.Format(customTimeLayout)), nil
+	return []byte(fmt.Sprintf("\"%s\"", ct.Time.Format(customTimeLayout))), nil
 }
 
 func (ct *CustomTime) IsSet() bool {

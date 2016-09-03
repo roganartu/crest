@@ -7,9 +7,9 @@ import (
 )
 
 type historyWrapper struct {
-	Count int       `json:"totalCount"`
-	Pages int       `json:"pageCount"`
-	Items []History `json:"items"`
+	Count int        `json:"totalCount"`
+	Pages int        `json:"pageCount"`
+	Items []*History `json:"items"`
 }
 
 type History struct {
@@ -25,7 +25,7 @@ const (
 	HISTORY_URL = "https://crest-tq.eveonline.com/market/%d/history/?type=https://crest-tq.eveonline.com/inventory/types/%d/"
 )
 
-func LoadHistory(region, itemType int) ([]History, error) {
+func LoadHistory(region, itemType int) ([]*History, error) {
 	url := fmt.Sprintf(HISTORY_URL, region, itemType)
 
 	r, err := client.Get(url)

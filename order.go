@@ -7,9 +7,9 @@ import (
 )
 
 type orderWrapper struct {
-	Count int     `json:"totalCount"`
-	Pages int     `json:"pageCount"`
-	Items []Order `json:"items"`
+	Count int      `json:"totalCount"`
+	Pages int      `json:"pageCount"`
+	Items []*Order `json:"items"`
 }
 
 type Order struct {
@@ -24,7 +24,7 @@ const (
 	ORDERS_URL = "https://crest-tq.eveonline.com/market/%d/orders/?type=https://crest-tq.eveonline.com/inventory/types/%d/"
 )
 
-func LoadOrders(region, itemType int) ([]Order, error) {
+func LoadOrders(region, itemType int) ([]*Order, error) {
 	url := fmt.Sprintf(ORDERS_URL, region, itemType)
 
 	r, err := client.Get(url)
